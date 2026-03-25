@@ -1,13 +1,12 @@
 <?php
 die("Anmeldung ist abgeschlossen. Vielen Dank für eure Anmeldungen!");
 // Gmail-Konfiguration (Bitte anpassen!)
-define('GMAIL_USER', 'johnturbo82@gmail.com');
-define('GMAIL_PASSWORD', 'azwk niug ysqt ekto'); // App-Passwort von Google
+define('GMAIL_USER', 'email');
+define('GMAIL_PASSWORD', 'passwort'); // App-Passwort von Google
 
 // Empfänger-Adressen (mehrere möglich)
 $recipients = [
-    ['email' => 'oliver@schoettner.rocks', 'name' => 'Oliver Schöttner'],
-    ['email' => 'laura.lachner411@gmail.com', 'name' => 'Laura Lachner'],
+    ['email' => 'test@test.de', 'name' => 'Test Hans'],
 ];
 
 // Autoload für PHPMailer
