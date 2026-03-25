@@ -12,6 +12,14 @@
 
     <h2>Impressum</h2>
     <p>Erstellt mit 💙 in Ingolstadt, Bayern 🔷🔷</p>
+    <p>
+        <a href="https://github.com/johnturbo82/hochzeit.schoettner.rocks">GitHub Repository</a><br />
+        <a class="github-button" 
+            href="https://github.com/johnturbo82/hochzeit.schoettner.rocks" 
+            data-icon="octicon-star" 
+            data-show-count="true" 
+            aria-label="Star johnturbo82/hochzeit.schoettner.rocks on GitHub">Star</a>
+    </p>
     <p>Gestaltet und entwickelt von Oliver Schöttner: <a target="_blank"
             href="https://schoettner.dev">https://schoettner.dev</a></p>
     <p>Oliver Schöttner<br>
@@ -20,5 +28,6 @@
     <p><a href="mailto:oliver@schoettner.dev">oliver@schoettner.dev</a></p>
     <p><a href="tel:+491708872666">0170 / TURBO ON</a></p>
 </div>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
 
 <?php include '../includes/footer.php'; ?>
