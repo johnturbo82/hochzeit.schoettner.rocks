@@ -1,0 +1,21 @@
+vendor/
+
+# Laufzeitdaten
+src/data/*.sqlite
+src/data/getraenke.json
+
+# Umgebungsdateien
+.env
+.env.*
+!.env.example
+
+# Logs und temporäre Dateien
+*.log
+*.tmp
+*.swp
+*.swo
+
+# Editor/OS
+.DS_Store
+.idea/
+.vscode/

@@ -1,0 +1,29 @@
+services:
+  hochzeit-php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: hochzeit-php
+    volumes:
+      - ./src:/var/www/html
+      - ./vendor:/var/www/vendor
+    labels:
+      - "traefik.enable=true"
+      # HTTPS router for hochzeit.schoettner.rocks
+      - "traefik.http.routers.hochzeit.rule=Host(`hochzeit.schoettner.rocks`)"
+      - "traefik.http.routers.hochzeit.entrypoints=websecure"
+      - "traefik.http.routers.hochzeit.tls.certresolver=myresolver"
+      - "traefik.http.services.hochzeit.loadbalancer.server.port=80"
+      # HTTP to HTTPS redirect
+      - "traefik.http.routers.hochzeit-http.rule=Host(`hochzeit.schoettner.rocks`)"
+      - "traefik.http.routers.hochzeit-http.entrypoints=web"
+      - "traefik.http.routers.hochzeit-http.middlewares=https-redirect"
+      - "traefik.http.middlewares.https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.middlewares.https-redirect.redirectscheme.permanent=true"
+    networks:
+      - web
+    restart: unless-stopped
+
+networks:
+  web:
+    external: true

@@ -1,0 +1,9 @@
+{
+    "name": "schoettner/hochzeit",
+    "description": "Wedding website for hochzeit.schoettner.rocks",
+    "type": "project",
+    "require": {
+        "php": "^8.2",
+        "phpmailer/phpmailer": "^7.0"
+    }
+}
