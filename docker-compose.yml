@@ -7,6 +7,11 @@ services:
     volumes:
       - ./src:/var/www/html
       - ./vendor:/var/www/vendor
+    environment:
+      FOTOUPLOAD_TOKEN: ${FOTOUPLOAD_TOKEN:-}
+      GMAIL_USER: ${GMAIL_USER:-}
+      GMAIL_PASSWORD: ${GMAIL_PASSWORD:-}
+      MAIL_RECIPIENTS: ${MAIL_RECIPIENTS:-}
     labels:
       - "traefik.enable=true"
       # HTTPS router for hochzeit.schoettner.rocks

@@ -1,15 +1,47 @@
 <?php
 die("Anmeldung ist abgeschlossen. Vielen Dank für eure Anmeldungen!");
-// Gmail-Konfiguration (Bitte anpassen!)
-define('GMAIL_USER', 'email');
-define('GMAIL_PASSWORD', 'passwort'); // App-Passwort von Google
+// Mail configuration comes from environment variables (.env / docker compose)
+$gmailUser = trim((string)getenv('GMAIL_USER'));
+$gmailPassword = trim((string)getenv('GMAIL_PASSWORD'));
+$rawRecipients = trim((string)getenv('MAIL_RECIPIENTS'));
 
-// Empfänger-Adressen (mehrere möglich)
-$recipients = [
-    ['email' => 'test@test.de', 'name' => 'Test Hans'],
-];
+/**
+ * Expected format:
+ * MAIL_RECIPIENTS=email1@example.com|Name Eins;email2@example.com|Name Zwei
+ */
+function parseRecipients(string $value): array
+{
+    $result = [];
+    if ($value === '') {
+        return $result;
+    }
 
-// Autoload für PHPMailer
+    $pairs = explode(';', $value);
+    foreach ($pairs as $pair) {
+        $pair = trim($pair);
+        if ($pair === '') {
+            continue;
+        }
+
+        $parts = explode('|', $pair, 2);
+        $email = trim($parts[0] ?? '');
+        $name = trim($parts[1] ?? '');
+        if ($email === '') {
+            continue;
+        }
+
+        $result[] = [
+            'email' => $email,
+            'name' => $name,
+        ];
+    }
+
+    return $result;
+}
+
+$recipients = parseRecipients($rawRecipients);
+
+// PHPMailer autoload
 require_once '/var/www/vendor/autoload.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -18,7 +50,7 @@ use PDO;
 use Throwable;
 
 /**
- * Persistiert die Anmeldung in einer lokale SQLite-DB.
+ * Persists the registration in a local SQLite database.
  */
 function saveRegistrationToSqlite(array $payload): ?string
 {
@@ -73,14 +105,23 @@ function saveRegistrationToSqlite(array $payload): ?string
 
 header('Content-Type: application/json');
 
-// Nur POST-Requests erlauben
+if ($gmailUser === '' || $gmailPassword === '' || empty($recipients)) {
+    http_response_code(500);
+    echo json_encode([
+        'success' => false,
+        'message' => 'Mail-Konfiguration unvollständig. Bitte Admin kontaktieren.',
+    ]);
+    exit;
+}
+
+// Allow POST requests only
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
     echo json_encode(['success' => false, 'message' => 'Methode nicht erlaubt']);
     exit;
 }
 
-// Formularfelder empfangen und validieren
+// Receive and validate form fields
 $vorname = trim($_POST['vorname'] ?? '');
 $nachname = trim($_POST['nachname'] ?? '');
 $essen = $_POST['essen'] ?? [];
@@ -91,17 +132,17 @@ $transport = $_POST['transport'] ?? 'nein';
 $transport_welches = trim($_POST['transport_welches'] ?? '');
 $sonstiges = trim($_POST['sonstiges'] ?? '');
 
-// Pflichtfelder prüfen
+// Validate required fields
 if (empty($vorname) || empty($nachname) || empty($song)) {
     http_response_code(400);
     echo json_encode(['success' => false, 'message' => 'Bitte alle Pflichtfelder ausfüllen']);
     exit;
 }
 
-// Essen-Array in String umwandeln
+// Convert selected food options array to string
 $essen_text = !empty($essen) ? implode(', ', $essen) : 'Keine Auswahl';
 
-// Daten in SQLite schreiben (darf die E-Mail nicht blockieren)
+// Write data to SQLite (must not block email sending)
 $dbWarning = saveRegistrationToSqlite([
     'vorname' => $vorname,
     'nachname' => $nachname,
@@ -114,7 +155,7 @@ $dbWarning = saveRegistrationToSqlite([
     'sonstiges' => $sonstiges,
 ]);
 
-// E-Mail-Inhalt erstellen
+// Build email content
 $email_body = "
 <html>
 <head>
@@ -193,46 +234,46 @@ $email_body .= "
 </html>
 ";
 
-// PHPMailer initialisieren
+// Initialize PHPMailer
 $mail = new PHPMailer(true);
 
 try {
-    // Server-Einstellungen
+    // Server settings
     $mail->isSMTP();
     $mail->Host       = 'smtp.gmail.com';
     $mail->SMTPAuth   = true;
-    $mail->Username   = GMAIL_USER;
-    $mail->Password   = GMAIL_PASSWORD;
+    $mail->Username   = $gmailUser;
+    $mail->Password   = $gmailPassword;
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port       = 587;
     $mail->CharSet    = 'UTF-8';
     
-    // Anti-Spam Einstellungen
-    $mail->XMailer = ' '; // Versteckt PHPMailer Version
+    // Anti-spam settings
+    $mail->XMailer = ' '; // Hide PHPMailer version
     $mail->Priority = 3; // Normal priority
 
-    // Absender und Empfänger
-    $mail->setFrom(GMAIL_USER, 'Hochzeit Schöttner');
+    // Sender and recipients
+    $mail->setFrom($gmailUser, 'Hochzeit Schöttner');
     
-    // Alle Empfänger hinzufügen
+    // Add all recipients
     foreach ($recipients as $recipient) {
         $mail->addAddress($recipient['email'], $recipient['name']);
     }
     
-    $mail->addReplyTo(GMAIL_USER, 'Hochzeit Schöttner');
+    $mail->addReplyTo($gmailUser, 'Hochzeit Schöttner');
     
-    // Zusätzliche Header für bessere Zustellbarkeit
+    // Additional headers for better deliverability
     $mail->addCustomHeader('X-Mailer', 'PHP/' . phpversion());
     $mail->addCustomHeader('X-Priority', '3');
     $mail->addCustomHeader('Importance', 'Normal');
 
-    // Inhalt
+    // Message content
     $mail->isHTML(true);
     $mail->Subject = 'Hochzeitsanmeldung - ' . $vorname . ' ' . $nachname;
     $mail->Body    = $email_body;
     $mail->AltBody = strip_tags(str_replace('<br>', "\n", $email_body));
 
-    // E-Mail senden
+    // Send email
     $mail->send();
     
     $responseMessage = 'Vielen Dank für deine Anmeldung! Wir haben deine Daten erhalten.';

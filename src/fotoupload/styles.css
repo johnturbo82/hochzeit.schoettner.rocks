@@ -1,0 +1,192 @@
+.fotoupload-wrap {
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.fotoupload-card {
+    border: 1px solid var(--highlight-color);
+    border-radius: var(--border-radius);
+    background: rgba(0, 0, 0, 0.18);
+    box-shadow: 0 0 18px rgba(0, 0, 0, 0.2);
+    padding: 18px;
+}
+
+.fotoupload-hint {
+    border-left: 4px solid var(--highlight-color);
+    border-radius: var(--border-radius);
+    background: rgba(190, 152, 71, 0.12);
+    padding: 10px 12px;
+    margin: 0 0 16px;
+}
+
+.fotoupload-alert {
+    border-radius: var(--border-radius);
+    padding: 10px 12px;
+    margin: 0 0 10px;
+}
+
+.fotoupload-ok {
+    border: 1px solid #4b7a51;
+    background: rgba(75, 122, 81, 0.22);
+    color: #dff4df;
+}
+
+.fotoupload-err {
+    border: 1px solid #8e4c4c;
+    background: rgba(142, 76, 76, 0.22);
+    color: #ffdede;
+}
+
+.fotoupload-label {
+    display: block;
+    margin-bottom: 6px;
+    font-family: 'Cinzel', serif;
+    color: var(--text-color);
+}
+
+.fotoupload-input {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid var(--highlight-color);
+    border-radius: var(--border-radius);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    padding: 8px;
+    margin-bottom: 14px;
+    font-family: 'EB Garamond', serif;
+    font-size: 17px;
+}
+
+.fotoupload-input::file-selector-button {
+    background-color: var(--highlight-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: var(--border-radius);
+    font-family: 'Cinzel', serif;
+    padding: 8px 12px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.fotoupload-button {
+    border: none;
+    border-radius: var(--border-radius);
+    background-color: var(--highlight-color);
+    color: var(--text-color);
+    font-family: 'Cinzel', serif;
+    font-size: 18px;
+    line-height: 1.2;
+    padding: 13px 16px;
+    cursor: pointer;
+}
+
+.fotoupload-button:hover {
+    box-shadow: 0 0 10px var(--shadow-color);
+}
+
+.fotoupload-subtle {
+    color: var(--link-color);
+    margin-top: 10px;
+}
+
+.fotoupload-subtle-compact {
+    margin-top: 2px;
+}
+
+.fotoupload-preview {
+    margin-top: 14px;
+    margin-bottom: 8px;
+    padding: 12px;
+    border: 1px dashed var(--highlight-color);
+    border-radius: var(--border-radius);
+    background: rgba(190, 152, 71, 0.06);
+}
+
+.fotoupload-preview-title {
+    margin: 0;
+    font-family: 'Cinzel', serif;
+    color: var(--text-color);
+}
+
+.fotoupload-preview-grid {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 10px;
+}
+
+.fotoupload-preview-item {
+    margin: 0;
+    padding: 0;
+}
+
+.fotoupload-preview-thumb {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--highlight-color);
+    display: block;
+}
+
+.fotoupload-preview-caption {
+    margin-top: 6px;
+    font-size: 0.95rem;
+    color: var(--text-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.fotoupload-preview-size {
+    display: block;
+    color: var(--link-color);
+    font-size: 0.85rem;
+}
+
+.fotoupload-remove {
+    margin-top: 6px;
+    width: 100%;
+    border: 1px solid var(--highlight-color);
+    border-radius: var(--border-radius);
+    background: rgba(0, 0, 0, 0.28);
+    color: var(--text-color);
+    font-family: 'Cinzel', serif;
+    font-size: 0.82rem;
+    line-height: 1.2;
+    padding: 7px 6px;
+    cursor: pointer;
+}
+
+.fotoupload-remove:hover {
+    background: rgba(190, 152, 71, 0.2);
+}
+
+.fotoupload-remove:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+}
+
+@media (max-width: 640px) {
+    .fotoupload-wrap {
+        max-width: 100%;
+    }
+
+    .fotoupload-card {
+        padding: 14px;
+    }
+
+    .fotoupload-button {
+        font-size: 19px;
+        padding: 15px;
+    }
+
+    .fotoupload-input {
+        font-size: 16px;
+    }
+
+    .fotoupload-preview-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+    }
+}
