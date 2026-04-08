@@ -13,7 +13,7 @@
     <h2>Impressum</h2>
     <p>Erstellt mit 💙 in Ingolstadt, Bayern 🔷🔷</p>
     <p>
-        <a href="https://github.com/johnturbo82/hochzeit.schoettner.rocks">GitHub Repository</a><br />
+        <a href="https://github.com/johnturbo82/hochzeit.schoettner.rocks" target="_blank">GitHub Repository</a><br />
         <a class="github-button" 
             href="https://github.com/johnturbo82/hochzeit.schoettner.rocks" 
             data-icon="octicon-star" 
