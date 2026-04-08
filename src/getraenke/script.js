@@ -4,6 +4,7 @@
     const input = document.getElementById('drink-input');
     const submit = document.getElementById('drink-submit');
     const feedback = document.getElementById('drink-feedback');
+    const total = document.getElementById('drink-total');
     let currentItems = [];
 
     const VOTED_KEY = 'drinks_voted';
@@ -39,6 +40,11 @@
 
     function renderList(items) {
         currentItems = items || [];
+        const totalVotes = currentItems.reduce((sum, item) => sum + Number(item.votes || 0), 0);
+        if (total) {
+            total.textContent = `Gesamt ${totalVotes} Stimme${totalVotes !== 1 ? 'n' : ''}`;
+        }
+
         if (!items || items.length === 0) {
             list.innerHTML = '<li style="list-style:none; color: var(--shadow-color); font-style: italic;">Noch keine Wünsche – sei der Erste!</li>';
             return;

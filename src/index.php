@@ -10,6 +10,12 @@
     <h3>Letzte Neuigkeiten</h3>
     <div class="news">
         <div class="news-item">
+            <span class="news-date">05. April 2026</span>
+            <h4>Getränkewünsche</h4>
+            <p>Wir möchten sicherstellen, dass für jeden Geschmack etwas dabei ist. Teilt uns eure Lieblingsgetränke mit, damit wir die meistgewünschten bereitstellen können!</p>
+            <a href="/getraenke" class="button">Getränkewünsche hier eintragen!</a>
+        </div>
+        <div class="news-item">
             <span class="news-date">22. März 2026</span>
             <h4>Der Hochzeitspodcast</h4>
             <p>Um euch etwas näher an uns heranzubringen, haben wir einen <a href="/podcast">Podcast</a> gestartet. Hört rein und begleitet uns auf unserer Reise zur Hochzeit!</p>
