@@ -24,7 +24,7 @@
     <h2>Wann ist die standesamtliche Trauung?</h2>
     <p>Offiziell Mr. und Mrs. Schöttner werden wir am 03.07. um 11:30 Uhr. Wir freuen uns über alle, die uns vor dem
         Standesamt Ingolstadt als frischgebackenes Ehepaar überraschen. Wo genau,
-        fragt ihr am besten bei Simone oder Robert an.</p>
+        fragt ihr am besten bei <a href="/kontakt">Simone oder Robert</a> an.</p>
     <span class="separator">§</span>
     <h2>Ich möchte euch überraschen. Wie kann ich das einplanen lassen?</h2>
     <p>Flashmob, Lieder, Spiele - wir freuen uns auf angemessene Überraschungen! Dafür nehmt ihr bitte Kontakt mit <a href="/kontakt">Simone oder Robert</a> auf.</p>
