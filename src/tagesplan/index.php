@@ -61,4 +61,6 @@
 </div>
 <a href="/anmeldung" class="button register">Zur Anmeldung</a>
 
+<link rel="stylesheet" href="/tagesplan/styles.css?v=<?php echo filemtime(__DIR__ . '/styles.css'); ?>">
+
 <?php include '../includes/footer.php'; ?>

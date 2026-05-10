@@ -2,19 +2,23 @@
     padding-left: 0;
     margin-left: 0;
 }
+
 #drink-list li {
     display: flex;
     align-items: center;
     gap: 12px;
     padding: 8px 0;
-    border-bottom: 1px solid rgba(190,152,71,0.2);
+    border-bottom: 1px solid rgba(190, 152, 71, 0.2);
 }
+
 #drink-list li:last-child {
     border-bottom: none;
 }
+
 .drink-name {
     flex: 1;
 }
+
 .drink-votes {
     font-family: 'Cinzel', serif;
     font-size: 0.9rem;
@@ -25,6 +29,7 @@
     font-variant-numeric: tabular-nums;
     text-align: right;
 }
+
 .btn-vote {
     background-color: transparent;
     border: 1px solid var(--highlight-color);
@@ -41,10 +46,12 @@
     font-size: 0.85rem;
     transition: background-color 0.2s, color 0.2s;
 }
+
 .btn-vote:hover:not([disabled]) {
     background-color: var(--highlight-color);
     color: var(--background-color);
 }
+
 .btn-voted {
     border-color: var(--shadow-color) !important;
     color: var(--shadow-color) !important;

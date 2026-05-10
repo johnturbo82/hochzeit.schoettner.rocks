@@ -1,0 +1,41 @@
+.seating .seating-item {
+    border: 1px solid var(--shadow-color);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.seating .seating-table {
+    padding-top: 14px;
+}
+
+.seating-title {
+    font-family: 'Tangerine', serif;
+    font-size: clamp(2.6rem, 7vw, 3.4rem);
+    font-weight: normal;
+    color: var(--highlight-color);
+    margin: 0 0 8px 0;
+    line-height: 1;
+}
+
+.seating-guests {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.seating-guests li {
+    font-size: 1.05rem;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--shadow-color);
+}
+
+.seating-guests li:last-child {
+    border-bottom: none;
+}
+
+@media screen and (max-width: 600px) {
+    .seating-title {
+        font-size: clamp(3.12rem, 8.4vw, 4.08rem);
+    }
+}

@@ -1,0 +1,28 @@
+.tagesplan {
+    text-align: center;
+}
+
+.tagesplan .entry .content h3 {
+    color: var(--link-color);
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.tagesplan .entry .content p {
+    margin: 0;
+}
+
+.tagesplan .entry::after {
+    content: "§";
+    display: block;
+    text-align: center;
+    margin: 20px 0;
+    font-size: 34px;
+    color: var(--highlight-color);
+    transform: rotate(90deg);
+}
+
+.tagesplan .entry:last-child::after {
+    content: "";
+    margin: 0;
+}

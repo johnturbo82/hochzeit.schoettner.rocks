@@ -348,35 +348,6 @@ div.text {
     flex-grow: 4;
 }
 
-.tagesplan {
-    text-align: center;
-}
-
-.tagesplan .entry .content h3 {
-    color: var(--link-color);
-    margin-top: 10px;
-    margin-bottom: 5px;
-}
-
-.tagesplan .entry .content p {
-    margin: 0;
-}
-
-.tagesplan .entry::after {
-    content: "§";
-    display: block;
-    text-align: center;
-    margin: 20px 0;
-    font-size: 34px;
-    color: var(--highlight-color);
-    transform: rotate(90deg);
-}
-
-.tagesplan .entry:last-child::after {
-    content: "";
-    margin: 0;
-}
-
 .news .news-item {
     border: 1px solid var(--shadow-color);
     border-radius: var(--border-radius);
@@ -393,42 +364,6 @@ div.text {
 .news .news-item p, ul {
     margin-top: 0;
     margin-bottom: 0;
-}
-
-.seating .seating-item {
-    border: 1px solid var(--shadow-color);
-    border-radius: var(--border-radius);
-    padding: 20px;
-    margin-bottom: 20px;
-}
-
-.seating .seating-table {
-    padding-top: 14px;
-}
-
-.seating-title {
-    font-family: 'Tangerine', serif;
-    font-size: clamp(2.6rem, 7vw, 3.4rem);
-    font-weight: normal;
-    color: var(--highlight-color);
-    margin: 0 0 8px 0;
-    line-height: 1;
-}
-
-.seating-guests {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.seating-guests li {
-    font-size: 1.05rem;
-    padding: 7px 0;
-    border-bottom: 1px solid var(--shadow-color);
-}
-
-.seating-guests li:last-child {
-    border-bottom: none;
 }
 
 #countdown {
@@ -460,10 +395,6 @@ footer::after {
 @media screen and (max-width: 600px) {
     .container {
         padding: 10px;
-    }
-
-    .seating-title {
-        font-size: clamp(3.12rem, 8.4vw, 4.08rem);
     }
 
     div.text {

@@ -101,6 +101,6 @@
 	</div>
 </div>
 
-
+<link rel="stylesheet" href="/sitzordnung/styles.css?v=<?php echo filemtime(__DIR__ . '/styles.css'); ?>">
 
 <?php include '../includes/footer.php'; ?>
