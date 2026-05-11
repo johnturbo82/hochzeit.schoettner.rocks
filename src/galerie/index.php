@@ -22,9 +22,20 @@ if ($uploadsDir !== false && is_dir($uploadsDir)) {
                 continue;
             }
 
+            $baseName = (string)pathinfo($item, PATHINFO_FILENAME);
+            if (substr($baseName, -3) === '_tn') {
+                continue;
+            }
+
+            $thumbFileName = $baseName . '_tn.' . $extension;
+            $thumbPath = $uploadsDir . DIRECTORY_SEPARATOR . $thumbFileName;
+            $thumbUrl = $webUploadPrefix . '/' . rawurlencode($thumbFileName);
+            $imageUrl = $webUploadPrefix . '/' . rawurlencode($item);
+
             $images[] = [
                 'name' => $item,
-                'url' => $webUploadPrefix . '/' . rawurlencode($item),
+                'url' => $imageUrl,
+                'thumbUrl' => is_file($thumbPath) ? $thumbUrl : $imageUrl,
                 'mtime' => (int)filemtime($filePath),
             ];
         }
@@ -58,7 +69,7 @@ if ($uploadsDir !== false && is_dir($uploadsDir)) {
                 >
                     <img
                         class="galerie-thumb"
-                        src="<?php echo htmlspecialchars($image['url'], ENT_QUOTES, 'UTF-8'); ?>"
+                        src="<?php echo htmlspecialchars($image['thumbUrl'], ENT_QUOTES, 'UTF-8'); ?>"
                         alt="Foto <?php echo (int)($index + 1); ?>"
                         loading="lazy"
                         decoding="async"

@@ -19,3 +19,4 @@ src/data/getraenke.json
 .DS_Store
 .idea/
 .vscode/
+src/fotoupload/uploads/
